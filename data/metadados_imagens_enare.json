@@ -1,0 +1,62 @@
+{
+  "2021-2022": {
+    "total_imagens": 5,
+    "questoes_com_imagem": [
+      1,
+      17,
+      59,
+      66,
+      99
+    ],
+    "imagens_criticas_nivel_1": [],
+    "tipos": {
+      "Outra": [
+        1,
+        17,
+        59,
+        66,
+        99
+      ]
+    }
+  },
+  "2022-2023": {
+    "total_imagens": 3,
+    "questoes_com_imagem": [
+      1,
+      19,
+      21
+    ],
+    "imagens_criticas_nivel_1": [
+      21
+    ],
+    "tipos": {
+      "Outra": [
+        1,
+        19
+      ],
+      "ECG": [
+        21
+      ]
+    }
+  },
+  "2023-2024": {
+    "total_imagens": 6,
+    "questoes_com_imagem": [
+      1,
+      14,
+      80,
+      81,
+      85
+    ],
+    "imagens_criticas_nivel_1": [],
+    "tipos": {
+      "Outra": [
+        1,
+        14,
+        80,
+        81,
+        85
+      ]
+    }
+  }
+}
