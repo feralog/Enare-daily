@@ -1,6 +1,7 @@
 {
   "name": "enare-daily",
   "version": "1.0.0",
+  "type": "module",
   "description": "Aplicação web gamificada de questões diárias do ENARE.",
   "scripts": {
     "dev": "next dev",

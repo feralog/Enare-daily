@@ -58,24 +58,26 @@ async function uploadImageToCloudinary(imagePath: string): Promise<string> {
 }
 
 function extractContent(questionContent: string): string {
-  // Remove heading, image markdown, descriptions and alternatives
+  // Extract content before the **Alternativas:** section
+  const altMatch = questionContent.match(/([\s\S]*?)(?=\*\*Alternativas:\*\*)/);
+  if (altMatch) {
+    return altMatch[1].trim();
+  }
+  // Fallback: remove alternatives section if found
   return questionContent
-    .replace(/!\[.*?\]\(.*?\)/g, '')
-    .replace(/\*\*Descrição Técnica da Imagem:\*\*[\s\S]*?(?=(\*\*Alternativas|$))/g, '')
-    .replace(/\*\*Alternativas:\*\*[\s\S]*?(?=(\*\*Tags|$))/g, '')
-    .replace(/\*\*Tags:\*\*[\s\S]*?(?=(---|$))/g, '')
+    .replace(/\*\*Alternativas:\*\*[\s\S]*?(?=(---|$))/g, '')
     .replace(/---\s*$/g, '')
     .trim();
 }
 
 function extractAlternatives(questionContent: string) {
-  const altRegex = /\*\*Alternativas:\*\*[\s\S]*?- A\)\s*(.*?)(?=\n\n|- B\))/s;
-  const bRegex = /- B\)\s*(.*?)(?=\n\n|- C\))/s;
-  const cRegex = /- C\)\s*(.*?)(?=\n\n|- D\))/s;
-  const dRegex = /- D\)\s*(.*?)(?=\n\n|- E\))/s;
-  const eRegex = /- E\)\s*(.*?)(?=\n\n|\*\*Tags|$)/s;
+  const aRegex = /- A\)\s*(.*?)(?=\n- B\)|\n\n|$)/s;
+  const bRegex = /- B\)\s*(.*?)(?=\n- C\)|\n\n|$)/s;
+  const cRegex = /- C\)\s*(.*?)(?=\n- D\)|\n\n|$)/s;
+  const dRegex = /- D\)\s*(.*?)(?=\n- E\)|\n\n|$)/s;
+  const eRegex = /- E\)\s*(.*?)(?=\n\n|$)/s;
 
-  const aMatch = questionContent.match(altRegex);
+  const aMatch = questionContent.match(aRegex);
   const bMatch = questionContent.match(bRegex);
   const cMatch = questionContent.match(cRegex);
   const dMatch = questionContent.match(dRegex);
@@ -128,20 +130,10 @@ export async function processQuestions() {
     while ((match = questionRegex.exec(mdContent)) !== null) {
       const questionNumber = parseInt(match[1], 10);
       const questionContent = match[2];
-      const imageMatch = questionContent.match(/!\[.*?\]\((.*?)\)/);
+      // No images in current format
       let imageUrl: string | null = null;
       let hasImage = false;
-      if (imageMatch) {
-        hasImage = true;
-        const localImagePath = path.join('data', imageMatch[1]);
-        if (fs.existsSync(localImagePath)) {
-          // eslint-disable-next-line no-await-in-loop
-          imageUrl = await uploadImageToCloudinary(localImagePath);
-        }
-      }
-      const imageDescRegex = /\*\*\[Descrição Técnica da Imagem\]:\*\*([\s\S]*?)(?=\*\*Alternativas|$)/;
-      const imageDescMatch = questionContent.match(imageDescRegex);
-      const imageDescription = imageDescMatch ? imageDescMatch[1].trim() : null;
+      let imageDescription: string | null = null;
 
       // Check if question was cancelled
       const correctAnswer = extractCorrectAnswer(gabarito, questionNumber);
@@ -160,7 +152,7 @@ export async function processQuestions() {
         hasImage,
         imageUrl,
         imageDescription,
-        tags: extractTags(questionContent),
+        tags: [], // No tags in current format
       });
     }
   }
