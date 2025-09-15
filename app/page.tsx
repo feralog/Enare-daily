@@ -45,13 +45,18 @@ export default function Home() {
   }, []);
 
   /**
-   * Calcula o número do dia a partir de hoje (14/09/2025 = Dia #1).
+   * Calcula o número do dia a partir de hoje (15/09/2025 = Dia #1).
    * Útil para exibir quantos desafios já ocorreram.
+   * Usa o fuso horário de São Paulo para consistência.
    */
   function getDayNumber() {
-    const startDate = new Date('2025-09-14'); // Dia #1
+    const startDate = new Date('2025-09-15T00:00:00-03:00'); // Dia #1 - 15/09/2025 (São Paulo)
     const today = new Date();
-    const diff = today.getTime() - startDate.getTime();
+
+    // Converter para o fuso horário de São Paulo
+    const saoPauloTime = new Date(today.toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}));
+
+    const diff = saoPauloTime.getTime() - startDate.getTime();
     return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
   }
 
@@ -186,7 +191,7 @@ export default function Home() {
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">🏥 ENARE DAILY 🏥</h1>
           <p className="text-gray-600">
-            Dia #{getDayNumber()} - {new Date().toLocaleDateString('pt-BR')}
+            Dia #{getDayNumber()} - {new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' })}
           </p>
           {streak > 0 && (
             <p className="text-orange-500 font-semibold mt-2">
