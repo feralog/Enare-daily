@@ -1,217 +1,108 @@
 # Gabarito ENARE 2021-2022 - Acesso Direto
 
-
 **Arquivo de questões correspondente:** questoes_enare_2021-2022.md
-**Pasta de imagens:** imagens_enare_2021-2022/
-
 
 ## Respostas Oficiais
 
-
-| Questão | Resposta | Possui Imagem |
-|---------|----------|---------------|
-
-| 1 | D | Sim - Outra |
-
-| 2 | C | Não |
-
-| 3 | A | Não |
-
-| 4 | E | Não |
-
-| 5 | C | Não |
-
-| 6 | B | Não |
-
-| 7 | D | Não |
-
-| 8 | E | Não |
-
-| 9 | C | Não |
-
-| 10 | A | Não |
-
-| 11 | C | Não |
-
-| 12 | D | Não |
-
-| 13 | E | Não |
-
-| 14 | C | Não |
-
-| 15 | E | Não |
-
-| 16 | B | Não |
-
-| 17 | E | Sim - Outra |
-
-| 18 | A | Não |
-
-| 19 | D | Não |
-
-| 20 | C | Não |
-
-| 21 | B | Não |
-
-| 22 | E | Não |
-
-| 23 | A | Não |
-
-| 24 | C | Não |
-
-| 25 | D | Não |
-
-| 26 | E | Não |
-
-| 27 | B | Não |
-
-| 28 | X | Não |
-
-| 29 | C | Não |
-
-| 30 | E | Não |
-
-| 31 | A | Não |
-
-| 32 | B | Não |
-
-| 33 | D | Não |
-
-| 34 | C | Não |
-
-| 35 | A | Não |
-
-| 36 | E | Não |
-
-| 37 | B | Não |
-
-| 38 | C | Não |
-
-| 39 | A | Não |
-
-| 40 | D | Não |
-
-| 41 | D | Não |
-
-| 42 | E | Não |
-
-| 43 | E | Não |
-
-| 44 | C | Não |
-
-| 45 | X | Não |
-
-| 46 | C | Não |
-
-| 47 | B | Não |
-
-| 48 | B | Não |
-
-| 49 | C | Não |
-
-| 50 | A | Não |
-
-| 51 | E | Não |
-
-| 52 | C | Não |
-
-| 53 | X | Não |
-
-| 54 | D | Não |
-
-| 55 | B | Não |
-
-| 56 | A | Não |
-
-| 57 | D | Não |
-
-| 58 | D | Não |
-
-| 59 | A | Sim - Outra |
-
-| 60 | B | Não |
-
-| 61 | E | Não |
-
-| 62 | X | Não |
-
-| 63 | E | Não |
-
-| 64 | D | Não |
-
-| 65 | X | Não |
-
-| 66 | D | Sim - Outra |
-
-| 67 | C | Não |
-
-| 68 | C | Não |
-
-| 69 | D | Não |
-
-| 70 | X | Não |
-
-| 71 | A | Não |
-
-| 72 | E | Não |
-
-| 73 | E | Não |
-
-| 74 | E | Não |
-
-| 75 | D | Não |
-
-| 76 | C | Não |
-
-| 77 | B | Não |
-
-| 78 | E | Não |
-
-| 79 | C | Não |
-
-| 80 | C | Não |
-
-| 81 | B | Não |
-
-| 82 | E | Não |
-
-| 83 | C | Não |
-
-| 84 | D | Não |
-
-| 85 | B | Não |
-
-| 86 | D | Não |
-
-| 87 | C | Não |
-
-| 88 | B | Não |
-
-| 89 | C | Não |
-
-| 90 | B | Não |
-
-| 91 | C | Não |
-
-| 92 | B | Não |
-
-| 93 | E | Não |
-
-| 94 | E | Não |
-
-| 95 | B | Não |
-
-| 96 | A | Não |
-
-| 97 | B | Não |
-
-| 98 | A | Não |
-
-| 99 | B | Sim - Outra |
-
-| 100 |  | Não |
-
-
-## Questões Anuladas
-
-28, 45, 53, 62, 65, 70
+| Questão | Resposta | Status |
+|---------|----------|--------|
+| 1 | D | Válida |
+| 2 | C | Válida |
+| 3 | A | Válida |
+| 4 | E | Válida |
+| 5 | C | Válida |
+| 6 | B | Válida |
+| 7 | D | Válida |
+| 8 | E | Válida |
+| 9 | C | Válida |
+| 10 | A | Válida |
+| 11 | C | Válida |
+| 12 | D | Válida |
+| 13 | E | Válida |
+| 14 | C | Válida |
+| 15 | E | Válida |
+| 16 | B | Válida |
+| 17 | E | Válida |
+| 18 | A | Válida |
+| 19 | D | Válida |
+| 20 | C | Válida |
+| 21 | B | Válida |
+| 22 | E | Válida |
+| 23 | A | Válida |
+| 24 | C | Válida |
+| 25 | D | Válida |
+| 26 | E | Válida |
+| 27 | B | Válida |
+| 28 | - | Anulada |
+| 29 | C | Válida |
+| 30 | E | Válida |
+| 31 | A | Válida |
+| 32 | B | Válida |
+| 33 | D | Válida |
+| 34 | C | Válida |
+| 35 | A | Válida |
+| 36 | E | Válida |
+| 37 | B | Válida |
+| 38 | C | Válida |
+| 39 | A | Válida |
+| 40 | D | Válida |
+| 41 | D | Válida |
+| 42 | E | Válida |
+| 43 | E | Válida |
+| 44 | C | Válida |
+| 45 | - | Anulada |
+| 46 | C | Válida |
+| 47 | B | Válida |
+| 48 | B | Válida |
+| 49 | C | Válida |
+| 50 | A | Válida |
+| 51 | E | Válida |
+| 52 | C | Válida |
+| 53 | - | Anulada |
+| 54 | D | Válida |
+| 55 | B | Válida |
+| 56 | A | Válida |
+| 57 | D | Válida |
+| 58 | D | Válida |
+| 59 | A | Válida |
+| 60 | B | Válida |
+| 61 | E | Válida |
+| 62 | - | Anulada |
+| 63 | E | Válida |
+| 64 | D | Válida |
+| 65 | - | Anulada |
+| 66 | D | Válida |
+| 67 | C | Válida |
+| 68 | C | Válida |
+| 69 | D | Válida |
+| 70 | - | Anulada |
+| 71 | A | Válida |
+| 72 | E | Válida |
+| 73 | E | Válida |
+| 74 | E | Válida |
+| 75 | D | Válida |
+| 76 | C | Válida |
+| 77 | B | Válida |
+| 78 | E | Válida |
+| 79 | C | Válida |
+| 80 | C | Válida |
+| 81 | B | Válida |
+| 82 | E | Válida |
+| 83 | C | Válida |
+| 84 | D | Válida |
+| 85 | B | Válida |
+| 86 | D | Válida |
+| 87 | C | Válida |
+| 88 | B | Válida |
+| 89 | C | Válida |
+| 90 | B | Válida |
+| 91 | C | Válida |
+| 92 | B | Válida |
+| 93 | E | Válida |
+| 94 | E | Válida |
+| 95 | B | Válida |
+| 96 | A | Válida |
+| 97 | B | Válida |
+| 98 | A | Válida |
+| 99 | B | Válida |
+| 100 | D | Válida |

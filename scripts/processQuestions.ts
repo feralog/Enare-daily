@@ -96,13 +96,13 @@ function extractAlternatives(questionContent: string) {
 }
 
 function extractCorrectAnswer(gabarito: string, questionNumber: number): string | null {
-  // Look for table format: | 1 | D | Sim - Outra |
-  const regex = new RegExp(`\\|\\s*${questionNumber}\\s*\\|\\s*([A-EX]?)\\s*\\|`, 'i');
+  // Look for table format: | 1 | D | Válida | or | 28 | - | Anulada |
+  const regex = new RegExp(`\\|\\s*${questionNumber}\\s*\\|\\s*([A-EX\\-]?)\\s*\\|`, 'i');
   const match = gabarito.match(regex);
   if (!match) throw new Error(`Resposta não encontrada para a questão ${questionNumber}`);
   const answer = match[1]?.toUpperCase().trim();
-  // Return null for cancelled questions (marked with X or empty)
-  return (!answer || answer === 'X') ? null : answer;
+  // Return null for cancelled questions (marked with X, - or empty)
+  return (!answer || answer === 'X' || answer === '-') ? null : answer;
 }
 
 function extractTags(questionContent: string): string[] {
