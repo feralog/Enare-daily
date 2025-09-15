@@ -36,7 +36,7 @@ export default function Archive() {
     const today = new Date().toISOString().split('T')[0];
     if (dateStr > today) return 'future-date';
     if (answeredDates.includes(dateStr)) return 'answered-date';
-    if (dateStr < '2024-01-01') return 'unavailable-date';
+    if (dateStr < '2025-09-14') return 'unavailable-date'; // App start date
     return 'available-date';
   };
 

@@ -45,11 +45,11 @@ export default function Home() {
   }, []);
 
   /**
-   * Calcula o número do dia a partir de uma data base (2024-01-01).
+   * Calcula o número do dia a partir de hoje (14/09/2025 = Dia #1).
    * Útil para exibir quantos desafios já ocorreram.
    */
   function getDayNumber() {
-    const startDate = new Date('2024-01-01');
+    const startDate = new Date('2025-09-14'); // Dia #1
     const today = new Date();
     const diff = today.getTime() - startDate.getTime();
     return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;

@@ -9,7 +9,9 @@
       "Bash(git push:*)",
       "Bash(npm run upload-to-supabase:*)",
       "Bash(npm run check-database:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm run upload-images:*)",
+      "Bash(npm run update-image-urls:*)"
     ],
     "deny": [],
     "ask": []

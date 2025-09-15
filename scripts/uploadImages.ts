@@ -1,6 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import cloudinary from 'cloudinary';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config({ path: '.env.local' });
 
 /**
  * Script utilitário para carregar imagens de todas as pastas de imagens do ENARE
@@ -12,8 +16,18 @@ async function uploadImages() {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+  console.log('🔧 Checking Cloudinary credentials:');
+  console.log('Cloud Name:', cloudName ? '✓ Found' : '✗ Missing');
+  console.log('API Key:', apiKey ? '✓ Found' : '✗ Missing');
+  console.log('API Secret:', apiSecret ? '✓ Found' : '✗ Missing');
+
   if (!cloudName || !apiKey || !apiSecret) {
-    console.error('Defina as variáveis de ambiente do Cloudinary para enviar imagens.');
+    console.error('❌ Missing Cloudinary credentials in .env.local');
+    console.error('Make sure you have:');
+    console.error('NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=din6eank5');
+    console.error('CLOUDINARY_API_KEY=your_api_key');
+    console.error('CLOUDINARY_API_SECRET=your_api_secret');
     return;
   }
   cloudinary.v2.config({ cloud_name: cloudName, api_key: apiKey, api_secret: apiSecret });
