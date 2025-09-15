@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "process-questions": "ts-node scripts/processQuestions.ts",
-    "upload-images": "ts-node scripts/uploadImages.ts"
+    "upload-images": "ts-node scripts/uploadImages.ts",
+    "upload-to-supabase": "ts-node scripts/uploadToSupabase.ts",
+    "check-database": "ts-node scripts/checkDatabase.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
