@@ -75,7 +75,7 @@ export function Question({ question, selectedAnswer, onSelectAnswer, showResult,
         )}
       </div>
       <div className="space-y-2">
-        {Object.entries(question.alternatives).map(([letter, text]) => {
+        {question.alternatives && Object.entries(question.alternatives).map(([letter, text]) => {
           // Determinar estilos com base no estado
           let classes = 'w-full text-left p-3 rounded-lg transition-all';
           if (!showResult && selectedAnswer === letter) {

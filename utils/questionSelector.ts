@@ -1,6 +1,28 @@
 import seedrandom from 'seedrandom';
 import { supabase } from '@/lib/supabase';
 
+// Transform database question format to frontend format
+function transformQuestion(dbQuestion: any) {
+  if (!dbQuestion) return null;
+
+  return {
+    id: dbQuestion.id,
+    year: dbQuestion.year,
+    content: dbQuestion.content,
+    alternatives: {
+      A: dbQuestion.alternative_a,
+      B: dbQuestion.alternative_b,
+      C: dbQuestion.alternative_c,
+      D: dbQuestion.alternative_d,
+      E: dbQuestion.alternative_e,
+    },
+    correct_answer: dbQuestion.correct_answer,
+    hasImage: dbQuestion.has_image,
+    imageUrl: dbQuestion.image_url,
+    imageDescription: dbQuestion.image_description,
+  };
+}
+
 /**
  * Seleciona três questões diárias, uma de cada ano, de forma determinística
  * com base na data informada. Utiliza um algoritmo de seleção que
@@ -25,28 +47,30 @@ export async function getDailyQuestions(date: Date) {
       supabase.from('questions').select('*').eq('id', cached.question_2022_2023).single(),
       supabase.from('questions').select('*').eq('id', cached.question_2023_2024).single(),
     ]);
-    return questions.map((q) => q.data);
+    return questions.map((q) => transformQuestion(q.data)).filter(q => q !== null);
   }
 
   // Gerar novas questões
   const rng = seedrandom(dateString);
   const years = ['2021-2022', '2022-2023', '2023-2024'];
   const selectedQuestions: any[] = [];
+  const selectedIds: string[] = [];
 
   for (const year of years) {
-    const { count } = await supabase
-      .from('questions')
-      .select('*', { count: 'exact', head: true })
-      .eq('year', year);
-    const randomIndex = Math.floor((rng() as number) * (count ?? 0)) + 1;
-    const { data: question } = await supabase
+    // Get all questions for this year and pick one randomly
+    const { data: allQuestions } = await supabase
       .from('questions')
       .select('*')
-      .eq('year', year)
-      .eq('number', randomIndex)
-      .single();
-    if (question) {
-      selectedQuestions.push(question);
+      .eq('year', year);
+
+    if (allQuestions && allQuestions.length > 0) {
+      const randomIndex = Math.floor((rng() as number) * allQuestions.length);
+      const dbQuestion = allQuestions[randomIndex];
+      const question = transformQuestion(dbQuestion);
+      if (question && dbQuestion) {
+        selectedQuestions.push(question);
+        selectedIds.push(dbQuestion.id);
+      }
     }
   }
 
@@ -54,9 +78,9 @@ export async function getDailyQuestions(date: Date) {
   if (selectedQuestions.length === 3) {
     await supabase.from('daily_questions').insert({
       date: dateString,
-      question_2021_2022: selectedQuestions[0].id,
-      question_2022_2023: selectedQuestions[1].id,
-      question_2023_2024: selectedQuestions[2].id,
+      question_2021_2022: selectedIds[0],
+      question_2022_2023: selectedIds[1],
+      question_2023_2024: selectedIds[2],
     });
   }
   return selectedQuestions;

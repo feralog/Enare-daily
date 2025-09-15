@@ -66,7 +66,12 @@ export default function Home() {
       const dateParam = searchParams.get('date');
       const date = dateParam ? new Date(dateParam) : new Date();
       const qs = await getDailyQuestions(date);
-      setQuestions(qs as unknown as QuestionType[]);
+      if (qs && Array.isArray(qs)) {
+        setQuestions(qs.filter(q => q != null) as unknown as QuestionType[]);
+      } else {
+        console.error('No questions received or invalid format');
+        setQuestions([]);
+      }
     } catch (err) {
       console.error('Erro ao carregar questões:', err);
     } finally {
