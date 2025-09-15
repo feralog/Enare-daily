@@ -44,6 +44,13 @@ export default function Home() {
     checkUser();
   }, []);
 
+  useEffect(() => {
+    // Verificar se já respondeu hoje quando usuário e questões estão carregados
+    if (user && questions.length > 0) {
+      checkExistingAnswers();
+    }
+  }, [user, questions]);
+
   /**
    * Calcula o número do dia a partir de hoje (15/09/2025 = Dia #1).
    * Útil para exibir quantos desafios já ocorreram.
@@ -114,6 +121,43 @@ export default function Home() {
   }
 
   /**
+   * Verifica se o usuário já respondeu as questões de hoje e carrega as respostas.
+   */
+  async function checkExistingAnswers() {
+    if (!user || questions.length === 0) return;
+
+    try {
+      // Usar fuso horário de São Paulo para consistência
+      const today = new Date();
+      const saoPauloTime = new Date(today.toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}));
+      const todayStr = saoPauloTime.toISOString().split('T')[0];
+
+      // Buscar respostas existentes para hoje
+      const { data: existingAnswers } = await supabase
+        .from('answers')
+        .select('question_id, selected_answer, is_correct')
+        .eq('user_id', user.id)
+        .eq('date', todayStr);
+
+      if (existingAnswers && existingAnswers.length > 0) {
+        // Carregar respostas existentes
+        const existingAnswersMap: AnswerState = {};
+        existingAnswers.forEach(answer => {
+          existingAnswersMap[answer.question_id] = answer.selected_answer;
+        });
+        setAnswers(existingAnswersMap);
+
+        // Se já respondeu todas as 3 questões, mostrar resultados
+        if (existingAnswers.length === 3) {
+          setShowResults(true);
+        }
+      }
+    } catch (err) {
+      console.error('Erro ao verificar respostas existentes:', err);
+    }
+  }
+
+  /**
    * Lida com a seleção de uma alternativa para uma questão específica.
    */
   function handleAnswer(questionId: string, answer: string) {
@@ -126,8 +170,12 @@ export default function Home() {
   async function submitAnswers() {
     if (!user) return;
     try {
+      // Usar fuso horário de São Paulo para consistência
+      const today = new Date();
+      const saoPauloTime = new Date(today.toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}));
+      const todayStr = saoPauloTime.toISOString().split('T')[0];
+
       // Inserir respostas individualmente
-      const todayStr = new Date().toISOString().split('T')[0];
       for (const q of questions) {
         const selectedAnswer = answers[q.id];
         const isCorrect = selectedAnswer === q.correct_answer;
