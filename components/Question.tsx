@@ -40,10 +40,10 @@ export function Question({ question, selectedAnswer, onSelectAnswer, showResult,
                 <Image
                   src={question.imageUrl}
                   alt="Imagem da questão"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  className="max-w-full h-auto rounded-lg"
+                  width={600}
+                  height={400}
+                  className="rounded-lg"
+                  style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
                   onError={() => setImageError(true)}
                   priority
                 />
